@@ -1,6 +1,6 @@
-from app.models import Place
+from app.models import CustomUser, Place
 from app.serializers import GroupSerializer, PlaceSerializer, UserSerializer
-from django.contrib.auth.models import Group, User
+from django.contrib.auth.models import Group
 from rest_framework import permissions, viewsets
 
 
@@ -8,7 +8,7 @@ class UserViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows users to be viewed or edited.
     """
-    queryset = User.objects.all().order_by('-date_joined')
+    queryset = CustomUser.objects.all().order_by('-date_joined')
     serializer_class = UserSerializer
     permission_classes = [permissions.IsAuthenticated]
 
@@ -26,6 +26,6 @@ class PlaceViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows places to be viewed or edited.
     """
-    queryset = Place.objects.all().order_by('id')
+    queryset = Place.objects.all()
     serializer_class = PlaceSerializer
     permission_classes = [permissions.IsAdminUser]

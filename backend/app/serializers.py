@@ -1,13 +1,13 @@
 
-from app.models import Place
-from django.contrib.auth.models import Group, User
+from app.models import CustomUser, Place
+from django.contrib.auth.models import Group
 from rest_framework import serializers
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = User
-        fields = ['url', 'username', 'groups']
+        model = CustomUser
+        fields = ['url', 'username', 'profile_image', 'groups']
 
 
 class GroupSerializer(serializers.HyperlinkedModelSerializer):
@@ -19,4 +19,4 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
 class PlaceSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Place
-        fields = ['id', 'url', 'latitude', 'longitude']
+        fields = ['url', 'latitude', 'longitude', 'code']
